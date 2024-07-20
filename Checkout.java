@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 public class Checkout {
 
-    public static int[] customerRate = {5,10};
+    public static int[] customerRate = {0,30};
 
     public static int[] customerItems = {4,15};
     public static int[] checkoutSpeed = {2,5};
 
-    public static int maxTicks = 100;
+    public static int maxTicks = 3*3600;
     public static int tickDelay = 0;
     public static int n = 3;
 
@@ -15,7 +15,9 @@ public class Checkout {
 
     public static void main(String[] args){
 
+        printTicks = true;
         CheckoutStats nLinesStats = nLines(n, maxTicks, tickDelay, false);
+        printTicks = false;
         CheckoutStats nLinesRandomStats = nLines(n, maxTicks, tickDelay, true);
         CheckoutStats oneLineStats = oneLine(n, maxTicks, tickDelay);
 
@@ -68,19 +70,22 @@ public class Checkout {
                         Helper.random(checkoutSpeed[0], checkoutSpeed[1]));
                 totalCustomers++;
 
-                Queue<Customer> lineChoice = lines.get(0);
-                int lineChoiceNum = 0;
+                Queue<Customer> lineChoice = null;
+                int lineChoiceNum = -1;
+                int lineChoiceSize = Integer.MAX_VALUE;
 
                 if(randomChoice){
                     lineChoiceNum = Helper.random(0, lines.size()-1);
                     lineChoice = lines.get(lineChoiceNum);
                 }
                 else{
-                    for(int i = 1; i < lines.size(); i++) {
+                    for(int i = 0; i < lines.size(); i++) {
+                        int size = lines.get(i).size() + (stations.get(i).customer != null ? 1 : 0);
 
-                        if (lines.get(i).size() < lineChoice.size()) {
+                        if (size < lineChoiceSize) {
                             lineChoice = lines.get(i);
                             lineChoiceNum = i;
+                            lineChoiceSize = size;
                         }
 
                     }
@@ -131,6 +136,8 @@ public class Checkout {
                 ArrayList<Customer> waitingCustomers = lines.get(i).items;
 
                 maxQueueLength = Math.max(maxQueueLength, waitingCustomers.size());
+
+                //System.out.println(waitingCustomers.size());
 
                 for(int j = 0; j < waitingCustomers.size(); j++){
                     waitingCustomers.get(j).queueTick();

@@ -20,7 +20,7 @@ public class Helper {
 
         System.out.println("Max Queue Length: " + stats.maxQueueLength);
         System.out.println("Customers Served: " + stats.customersServed);
-        System.out.println("Average Customer Wait: " + stats.customerTotalWait);//((double)stats.customerTotalWait / stats.totalCustomers));
+        System.out.println("Average Customer Wait: " + ((double)stats.customerTotalWait / stats.totalCustomers));;
 
     }
 
