@@ -14,10 +14,8 @@ public class Checkout {
     public static boolean printTicks = false;
 
     public static void main(String[] args){
-
-        printTicks = true;
+        
         CheckoutStats nLinesStats = nLines(n, maxTicks, tickDelay, false);
-        printTicks = false;
         CheckoutStats nLinesRandomStats = nLines(n, maxTicks, tickDelay, true);
         CheckoutStats oneLineStats = oneLine(n, maxTicks, tickDelay);
 
