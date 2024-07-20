@@ -2,19 +2,19 @@ import java.util.ArrayList;
 
 public class Checkout {
 
-    public static int[] customerRate = {0,30};
+    public static int[] customerRate = {8,20};
 
     public static int[] customerItems = {4,15};
     public static int[] checkoutSpeed = {2,5};
 
-    public static int maxTicks = 3*3600;
+    public static int maxTicks = 10*3600;
     public static int tickDelay = 0;
     public static int n = 3;
 
     public static boolean printTicks = false;
 
     public static void main(String[] args){
-        
+
         CheckoutStats nLinesStats = nLines(n, maxTicks, tickDelay, false);
         CheckoutStats nLinesRandomStats = nLines(n, maxTicks, tickDelay, true);
         CheckoutStats oneLineStats = oneLine(n, maxTicks, tickDelay);
@@ -61,7 +61,7 @@ public class Checkout {
 
             nextCustomerTime--;
 
-            if(nextCustomerTime == 0){
+            if(nextCustomerTime <= 0){
 
                 Customer newCustomer = new Customer(
                         Item.randomItems(Helper.random(customerItems[0], customerItems[1])),
