@@ -2,16 +2,16 @@ import java.util.ArrayList;
 
 public class Checkout {
 
-    public static int[] customerRate = {8,20};
+    public final static int[] customerRate = {8,20};
 
-    public static int[] customerItems = {4,15};
-    public static int[] checkoutSpeed = {2,5};
+    public final static int[] customerItems = {4,15};
+    public final static int[] checkoutSpeed = {2,5};
 
-    public static int maxTicks = 10*3600;
-    public static int tickDelay = 0;
-    public static int n = 3;
+    public final static int maxTicks = 2*3600;
+    public final static int tickDelay = 0;
+    public final static int n = 3;
 
-    public static boolean printTicks = false;
+    public static boolean printTicks = true;
 
     public static void main(String[] args){
 
