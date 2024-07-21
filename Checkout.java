@@ -11,14 +11,13 @@ public class Checkout {
     public final static int tickDelay = 0;
     public final static int n = 3;
 
-    public static boolean printTicks = true;
+    public final static boolean printTicks = false;
 
     public static void main(String[] args){
 
         CheckoutStats nLinesStats = nLines(n, maxTicks, tickDelay, false);
         CheckoutStats nLinesRandomStats = nLines(n, maxTicks, tickDelay, true);
         CheckoutStats oneLineStats = oneLine(n, maxTicks, tickDelay);
-
 
         System.out.println("━━━━━━━━━━━━━━━━━━━━━");
         System.out.println("N Line Stats Non-Random");
